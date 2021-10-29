@@ -25,13 +25,16 @@ fetchButton.addEventListener('click', event => {
         }
         xhrDepartments.send();
         //#endregion
+        $.ajax({
+            url: "http://localhost:3000/students",
+            success: (responseData) => {
+                console.log("jQuery: ", responseData);
+            }
+        })
     }
-
-    $.ajax({
-        url: "http://localhost:3000/students",
-        success: (responseData) => {
-            console.log("jQuery: ", responseData);
-        }
+    superagent.get("http://localhost:3000/students").then(res => {
+        console.log("superagent: ", res.text);
     })
+   
 
 })
